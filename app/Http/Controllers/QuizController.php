@@ -17,7 +17,7 @@ class QuizController extends Controller
     }
 
     public function welcome(){
-        $data = DB::table('quiz_table')
+        $data = DB::table('question_table')
                     ->get();
 
          $manage = view('welcome')
@@ -28,7 +28,7 @@ class QuizController extends Controller
     }
 
     public function welcome2(){
-    	$data = DB::table('quiz_table')
+    	$data = DB::table('question_table')
                     ->get();
 
          $manage = view('welcome2')
@@ -59,10 +59,13 @@ class QuizController extends Controller
         $data['name'] = $request->name;
         $data['email'] = $request->email;
         $data['contact'] = $request->contact;
+        $data['answer1'] = $request->answer1;
+        $data['answer2'] = $request->answer2;
+        $data['answer3'] = $request->answer3;
 
 
         DB::table('user_table')->insert($data);
-        Session::put('exception','Notice added successfully!!');
+        Session::put('exception','Thank you for your participation!!');
         return Redirect::to('/');
     }
 }
